@@ -1,0 +1,47 @@
+{
+  "version": "1.0.0",
+  "description": "Algorithm parameters and thresholds for river morphology change analysis",
+  "water_extraction": {
+    "ndwi_threshold": 0.0,
+    "mndwi_threshold": 0.0,
+    "description": "NDWI/MNDWI threshold for water body extraction. Water pixels have index >= threshold."
+  },
+  "centerline": {
+    "method": "voronoi_skeleton",
+    "min_boundary_samples": 20,
+    "max_boundary_samples": 500,
+    "sample_spacing": 5.0,
+    "description": "Voronoi-based medial axis extraction from boundary sample points"
+  },
+  "transects": {
+    "default_spacing": 50.0,
+    "min_count": 2,
+    "auto_width_factor": 0.5,
+    "description": "Perpendicular transects generated along centerline at regular intervals"
+  },
+  "migration": {
+    "method": "perpendicular_intersection",
+    "min_distance": 1e-6,
+    "description": "Migration measured as distance between shoreline intersections along transects"
+  },
+  "quality_codes": {
+    "1": "high - clean intersection, single shoreline crossing",
+    "2": "medium - small migration or minor complexity",
+    "3": "low - multiple intersections, complex geometry",
+    "4": "invalid - no intersection or processing error"
+  },
+  "direction_codes": {
+    "-1": "erosion - shoreline retreats (water expands)",
+    "0": "stable - no significant change",
+    "1": "deposition - shoreline advances (water contracts)"
+  },
+  "hotspots": {
+    "default_percentile": 90.0,
+    "description": "Transects with migration distance exceeding percentile threshold"
+  },
+  "references": [
+    "Pavelsky, T.M. & Smith, L.C. (2008). RivWidth: A MATLAB algorithm to calculate river widths from remotely sensed imagery. IEEE Geoscience and Remote Sensing Letters.",
+    "Isikdogan, F. et al. (2017). RivMap: Automatic river width extraction from Landsat imagery. IEEE International Geoscience and Remote Sensing Symposium.",
+    "Fisher, G.B. et al. (2013). Global assessment of river deltas. Nature Geoscience."
+  ]
+}
